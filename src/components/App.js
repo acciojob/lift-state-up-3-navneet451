@@ -1,13 +1,26 @@
-
-import React from "react";
-import './../styles/App.css';
+import React, { useState } from 'react';
+import ChildComponent1 from './ChildComponent1';
+import ChildComponent2 from './ChildComponent2';
 
 const App = () => {
-  return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
-  )
-}
+  // State to manage the selected option
+  const [selectedOption, setSelectedOption] = useState('');
 
-export default App
+  // Function to update the selected option
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+
+  return (
+    <div className="parent">
+      <h1>Lifting State Up Demo</h1>
+      <p>Selected Option: {selectedOption || "None"}</p>
+      {/* Rendering child components with props */}
+      <ChildComponent1 onOptionSelect={handleOptionChange} />
+      <ChildComponent2 onOptionSelect={handleOptionChange} />
+    </div>
+  );
+};
+
+export default App;
+
